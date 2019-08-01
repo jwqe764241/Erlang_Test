@@ -21,3 +21,9 @@ catcher(N) ->
         exit:X -> {N, caught, exited, X};
         error:X -> {N, caught, error, X}
     end.
+
+demo3() -> 
+    try generate_exception(5)
+    catch
+        error:X -> {X, erlang:get_stacktrace()}
+    end.
