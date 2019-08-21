@@ -2,6 +2,8 @@
 
 -export([demo1/0]).
 -export([demo2/0]).
+-export([demo3/0]).
+-export([demo4/0]).
 
 generate_exception(1) -> a;
 generate_exception(2) -> throw(a);
@@ -24,6 +26,12 @@ catcher(N) ->
 
 demo3() -> 
     try generate_exception(5)
+    catch
+        error:X -> {X, erlang:get_stacktrace()}
+    end.
+
+demo4() ->
+    try generate_exception(2)
     catch
         error:X -> {X, erlang:get_stacktrace()}
     end.
